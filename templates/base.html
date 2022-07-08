@@ -4,6 +4,7 @@
 	<title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+	<a href="{{ url_for('board', board_name='tech')}}">tech</a> / <a href="{{ url_for('board', board_name='lit')}}">lit</a> / <a href="{{ url_for('board', board_name='film')}}">film</a>
 	{% block content %}
 	{% endblock %}
 </body>
