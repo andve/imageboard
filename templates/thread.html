@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %} /{{ thread.board }}/ {% endblock %}
+{% block content %}
+	{% if thread.image %}
+		<img src="{{ thread.image }}" height=100>
+	{% endif %}
+	<span>No. {{ thread.num }}</span>
+	<span>{{ thread.subject }}</span>
+	<span>{{ thread.name }}</span>
+	<span>{{ thread.timestamp }}</span>
+	<p>{{ thread.content }}</p>
+
+	{% if thread.posts %}
+		{% for post in thread.posts %}
+			<span>No. {{ post.num }}</span>
+			<span>{{ post.name }}</span>
+			<span>{{ post.timestamp }}</span>
+			<div>
+			{% if post.image %}
+				<img src="{{ post.image }}" height=100>
+			{% endif %}
+			<span>{{ post.content }}</span>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>No posts</p>
+	{% endif %}
+	<form method="POST">
+		<input name="name" placeholder="Name">
+		<input name="content" placeholder="Content" required>
+		<input name="image" placeholder="Image">
+		<input type="submit" value="Submit post">
+	</form>
+{% endblock %}

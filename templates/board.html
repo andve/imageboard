@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} /{{ board_name }}/ {% endblock %}
+{% block content %}
+	{% if threads %}
+		{% for thread in threads.keys() %}
+			<div>
+				<a href="{{ url_for('thread', board_name=board_name, thread_num=threads[thread]["num"])}}">
+				{% if threads[thread]["image"] %}
+					<img src="{{ threads[thread]["image"] }}" height=100>
+				{% endif %}
+				<span>No. {{ threads[thread]["num"] }}</span>
+				<span>{{ threads[thread]["subject"] }}</span>
+				<span>{{ threads[thread]["name"] }}</span>
+				<span>{{ threads[thread]["timestamp"] }}</span>
+				<p>{{ threads[thread]["content"] }}</p>
+				</a>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>empty...</p>
+	{% endif %}
+	<form method="POST">
+		<input name="name" placeholder="Name">
+		<input name="subject" placeholder="Subject" required>
+		<input name="content" placeholder="Content">
+		<input name="image" placeholder="Image">
+		<input type="submit" value="Create thread">
+	</form>
+{% endblock %}
